@@ -1,0 +1,75 @@
+﻿<nav class="navbar">
+    <div class="navbar-logo">
+        <span>La Belle</span>
+        <span>Couture</span>
+    </div>
+
+    <ul class="navbar-links">
+        <li><a href="/">Home</a></li>
+        <li id="loginLink"><a href="/Login">Login</a></li>
+        <li id="signupLink"><a href="/Signup1">Sign Up</a></li>
+        <li id="profileLink" ><a href="/Profile">👤 Profile</a></li>
+        <li id="logoutLink"><a href="#" id="logoutBtn">Logout</a></li>
+        <li id="cartLink"><a href="/Cart">🛒 Cart</a></li>
+        <li id="favouritesLink"><a href="/Favourites">❤️ Favourites</a></li>
+    </ul>
+</nav>
+
+<!-- CATEGORY MODAL -->
+<div id="categoryModal" class="modal">
+    <div class="modal-content">
+        <span id="closeCategoryModal" class="close">&times;</span>
+        <h2>Categories</h2>
+        <button id="scrollToAddCategory" class="btn green">➕ Add Category</button>
+        <ul id="categoryList"></ul>
+        <form id="addCategoryForm" class="category-form">
+            <input type="text" id="newCategoryName" placeholder="Category name" />
+            <button type="button" id="saveCategoryBtn" class="btn">Save</button>
+        </form>
+        <p id="categoryMessage"></p>
+
+    </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span id="closeProductModal" class="close">&times;</span>
+        <h2>Products</h2>
+        <button id="scrollToAddProduct" class="btn green">➕ Add Product</button>
+
+        <p id="productMessage"></p>
+        <ul id="productCategoryList"></ul>
+        <form id="addProductForm">
+            <input type="text" id="productName" placeholder="Product name" />
+            <input type="text" id="productDescription" placeholder="Description" />
+            <input type="text" id="productImageUrl" placeholder="Image URL" />
+            <input type="number" id="productPrice" placeholder="Price" />
+            <input type="text" id="productColour" placeholder="Colour" />
+            <input type="text" id="productMaterial" placeholder="Material" />
+            <select id="productCategorySelect"></select>
+            <button type="button" id="submitProduct">Save</button>
+        </form>
+       
+    </div>
+</div>
+
+<!-- PRODUCT VARIANT MODAL -->
+<div id="variantModal" class="modal">
+    <div class="modal-content">
+        <span id="closeVariantModal" class="close">&times;</span>
+        <h2>Product Variants</h2>
+        <div id="variantCategoriesContainer"></div>
+    </div>
+</div>
+
+<!-- EDIT VARIANT MODAL -->
+<div id="variantEditModal" class="modal">
+    <div class="modal-content">
+        <span id="closeVariantEditModal" class="close">&times;</span>
+        <div id="variantEditContainer"></div>
+    </div>
+</div>
+
+<script src="/js/navbar.js"></script>
+<script src="/js/modals.js"></script>

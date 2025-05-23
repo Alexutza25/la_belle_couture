@@ -1,0 +1,93 @@
+﻿@page
+@model Try.Pages.Signup2Model
+<link href="~/css/signup.css" rel="stylesheet" />
+<link href="~/css/navbar.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+@await Html.PartialAsync("Shared/_Navbar")
+
+<div class="signup-container">
+    <div class="form-box">
+        <h1>Address Details</h1>
+
+        <!-- Hidden inputuri -->
+        <input type="hidden" name="Name" value="@Model.Name" />
+        <input type="hidden" name="Email" value="@Model.Email" />
+        <input type="hidden" name="Phone" value="@Model.Phone" />
+        <input type="hidden" name="Password" value="@Model.Password" />
+        <input type="hidden" name="TypeUser" value="@Model.TypeUser" />
+
+        <label>County</label>
+        <input name="Address.County" />
+
+        <label>City</label>
+        <input name="Address.City" />
+
+        <label>Street</label>
+        <input name="Address.Street" />
+
+        <label>Number</label>
+        <input name="Address.Number" />
+
+        <label>Building Entrance</label>
+        <input name="Address.BuildingEntrance" />
+
+        <label>Floor</label>
+        <input name="Address.Floor" />
+
+        <label>Apartment Number</label>
+        <input name="Address.ApartmentNumber" />
+
+        <label>Additional Details</label>
+        <input name="Address.AdditionalDetails" />
+
+        <!-- BUTONUL MAGIC -->
+        <a href="#" class="login-link" id="finishSignup">Sign Up</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById("finishSignup").addEventListener("click", async function (event) {
+        event.preventDefault();
+
+        const url = "/api/User/register"; // ← AICI E NOUL URL
+
+        const user = {
+            name: document.querySelector('[name="Name"]').value,
+            email: document.querySelector('[name="Email"]').value,
+            phone: document.querySelector('[name="Phone"]').value,
+            password: document.querySelector('[name="Password"]').value,
+            typeUser: document.querySelector('[name="TypeUser"]').value,
+            address: {
+                county: document.querySelector('[name="Address.County"]').value,
+                city: document.querySelector('[name="Address.City"]').value,
+                street: document.querySelector('[name="Address.Street"]').value,
+                number: document.querySelector('[name="Address.Number"]').value,
+                buildingEntrance: document.querySelector('[name="Address.BuildingEntrance"]').value,
+                floor: document.querySelector('[name="Address.Floor"]').value,
+                apartmentNumber: document.querySelector('[name="Address.ApartmentNumber"]').value,
+                additionalDetails: document.querySelector('[name="Address.AdditionalDetails"]').value
+            }
+        };
+
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(user)
+            });
+
+            if (response.ok) {
+                alert("Signed up succesfully!");
+                window.location.href = "/Login";
+            } else {
+                alert("Error Signing in!");
+            }
+        } catch (error) {
+            alert("Something went wrong!");
+            console.error(error);
+        }
+    });
+</script>

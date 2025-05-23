@@ -1,0 +1,56 @@
+﻿@page
+@model Try.Pages.Signup1Model
+<link href="~/css/signup.css" rel="stylesheet" />
+<link href="~/css/navbar.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+@await Html.PartialAsync("Shared/_Navbar")
+
+<div class="signup-container">
+    <div class="form-box">
+        <h1>Sign Up</h1>
+        <form>
+            <label>Name</label>
+            <input name="Name" placeholder="Your name" />
+
+            <label>Email address</label>
+            <input name="Email" type="email" placeholder="Your email" />
+
+            <label>Phone number</label>
+            <input name="Phone" placeholder="Your phone number" />
+
+            <label>Password</label>
+            <input name="Password" type="password" placeholder="Password" />
+
+            <label>Confirm password</label>
+            <input name="ConfirmPassword" type="password" placeholder="Repeat password" />
+
+            <label>User type</label>
+            <select name="TypeUser">
+                <option value="Client">Client</option>
+                <option value="Administrator">Administrator</option>
+            </select>
+            <div class="login-link" id="continueLink">
+                <a href="#" >Continue</a>
+            </div>
+            <div class="login-link">
+                Already have an account? <a href="/Login">Log in</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.getElementById("continueLink").addEventListener("click", function (event) {
+        event.preventDefault();
+        const name = document.querySelector('[name="Name"]').value;
+        const email = document.querySelector('[name="Email"]').value;
+        const phone = document.querySelector('[name="Phone"]').value;
+        const password = document.querySelector('[name="Password"]').value;
+        const confirmPassword = document.querySelector('[name="ConfirmPassword"]').value;
+        const typeUser = document.querySelector('[name="TypeUser"]').value;
+
+        const url = `/Signup2?Name=${encodeURIComponent(name)}&Email=${encodeURIComponent(email)}&Phone=${encodeURIComponent(phone)}&Password=${encodeURIComponent(password)}&ConfirmPassword=${encodeURIComponent(confirmPassword)}&TypeUser=${encodeURIComponent(typeUser)}`;
+
+        window.location.href = url;
+    });
+</script>

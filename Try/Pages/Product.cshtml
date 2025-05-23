@@ -1,0 +1,72 @@
+﻿@page
+@model Try.Pages.Product
+
+<!-- FONT + CSS -->
+<link rel="stylesheet" href="~/css/navbar.css" />
+<link rel="stylesheet" href="~/css/product.css" />
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<!-- NAVBAR -->
+@await Html.PartialAsync("Shared/_Navbar")
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+
+<!-- PAGINA DE PRODUS -->
+<div class="product-page" id="productPage">
+    <div class="product-container">
+        <div class="image-gallery">
+            <img id="productImage" src="https://via.placeholder.com/300" alt="Main Product Image" class="main-image" />
+            <div class="thumbnails" id="productThumbnails"></div>
+        </div>
+
+        <div class="product-info">
+
+            <div id="productDetails"></div>
+
+            <p id="availability"></p>
+
+            <div class="selectors" id="options"></div>
+
+            <button class="btn size-guide" id="sizeGuideBtn">📐 Size guide</button>
+            <div id="sizeGuide" style="margin-top: 10px;"></div>
+
+            <div class="actions">
+                <button class="btn add-to-cart" id="addToCart">🛒 Add to Cart</button>
+                <button class="btn fav" id="addToFavourites">❤️ Add to Favourites</button>
+            </div>
+
+            <div class="delivery-details">
+                <h3>Delivery Details</h3>
+                <p>Delivery in 2-4 business days. Free returns within 14 days.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="related-section">
+        <h2>Frequently Bought Together</h2>
+        <div class="related-products" id="boughtTogether">
+            <p>Loading...</p>
+        </div>
+
+        <h2>Others also viewed</h2>
+        <div class="related-products" id="othersViewed">
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <div class="reviews-section">
+        <h2>Reviews</h2>
+        <div class="reviews-list" id="reviews">
+            <p>Loading reviews...</p>
+        </div>
+        <form class="review-form">
+            <textarea placeholder="Leave a review..."></textarea>
+            <button type="button" class="btn">Submit Review</button>
+        </form>
+    </div>
+</div>
+
+<!-- JS -->
+<script src="/js/product.js"></script>

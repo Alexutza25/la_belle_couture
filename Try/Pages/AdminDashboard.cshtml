@@ -1,0 +1,93 @@
+﻿@page
+@model Try.Pages.AdminDashboardModel
+<link href="~/css/navbar.css" rel="stylesheet" />
+<link href="~/css/admin.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+@await Html.PartialAsync("Shared/_Navbar")
+
+<div class="main-content with-sidebar" id="productTableContainer">
+    <!-- 🚀 Conținutul categoriilor și produselor va fi încărcat dinamic prin JavaScript -->
+</div>
+
+<!-- Modal for description -->
+<div class="desc-modal" id="descModal"></div>
+<div class="desc-overlay" id="descOverlay"></div>
+
+<!-- Modals și JS -->
+<script src="/js/general.js"></script>
+<script src="/js/modals.js"></script>
+
+<script>
+
+    async function openVariants(productId, btn) {
+        const container = document.getElementById(`variants-${productId}`);
+        if (!container || !btn) return;
+
+        const isHidden = container.style.display === "none" || container.style.display === "";
+        container.style.display = isHidden ? "block" : "none";
+        btn.innerText = isHidden ? "🔼 Hide Variants" : "🔽 Show Variants";
+
+        if (!isHidden) return; // dacă deja e deschis, nu mai refacem conținutul
+
+        // 🧹 curățăm vechiul conținut
+        container.innerHTML = "";
+
+        const res = await fetch(`/api/ProductVariant`);
+        const allVariants = await res.json();
+        const variants = allVariants.filter(v => v.productId === productId);
+
+        const table = document.createElement("table");
+        table.className = "table table-sm";
+        table.innerHTML = `
+        <thead class="variant-header">
+            <tr>
+                <th>Variant ID</th>
+                <th>Size</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    `;
+
+        const tbody = table.querySelector("tbody");
+
+        variants.forEach(variant => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+            <td>${variant.productVariantId}</td>
+            <td>${variant.size}</td>
+            <td>${variant.stock}</td>
+            <td></td>
+        `;
+
+            const actionsCell = row.querySelector("td:last-child");
+
+            const editBtn = document.createElement("button");
+            editBtn.textContent = "Edit";
+            editBtn.className = "btn btn-danger btn-sm";
+            editBtn.addEventListener("click", () => openVariantModalEdit(variant));
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete";
+            deleteBtn.className = "btn btn-danger btn-sm";
+            deleteBtn.addEventListener("click", () => deleteItem("variant", variant.productVariantId, deleteBtn));
+
+            actionsCell.appendChild(editBtn);
+            actionsCell.appendChild(deleteBtn);
+
+            tbody.appendChild(row);
+        });
+
+        container.appendChild(table);
+
+        const addBtn = document.createElement("button");
+        addBtn.textContent = "➕ Add Variant";
+        addBtn.className = "btn btn-danger btn-sm";
+        addBtn.addEventListener("click", () => openVariantModalAdd(productId));
+
+        container.appendChild(addBtn);
+    }
+
+</script>

@@ -1,0 +1,101 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Pacifico:wght@700&display=swap');
+
+/* DOAR DIFERENȚELE – fără dubluri */
+
+body.with-sidebar {
+    margin-left: 220px;
+}
+
+.sidebar {
+    background-color: #f3d6d3;
+}
+
+.sidebar h1 {
+    color: #944f4f;
+}
+
+.sidebar a {
+    color: #944f4f;
+    font-weight: bold;
+}
+
+.sidebar a:hover {
+    color: #b73535;
+}
+
+table {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 6px 10px;
+    font-size: 14px;
+}
+
+.table-sm th, .table-sm td {
+    padding: 4px 8px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+
+}
+
+
+.desc-cell {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    color: #333;
+}
+
+.desc-modal {
+    display: none;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #888;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    z-index: 2000;
+    max-width: 600px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.desc-modal.show {
+    display: block;
+}
+
+.desc-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.4);
+    z-index: 1999;
+}
+
+.desc-overlay.show {
+    display: block;
+}
+
+.table thead.product-header {
+    background-color: #f3d6d3; /* roz intens, același ca sidebar/butoane */
+    color: #722f37;
+}
+
+.table thead.variant-header {
+    background-color: #fbeeee;
+    color: #944f4f;
+}
+
+
